@@ -98,11 +98,7 @@ def segments_to_paragraphs(segments: list[dict],
         if combined_so_far and seg_text_lower in combined_so_far:
             continue
 
-        # 断词修复：上段末尾是字母且本段开头是小写，直接拼接不加空格
-        if buf and buf[-1][-1].isalpha() and seg["text"] and seg["text"][0].islower():
-            buf[-1] = buf[-1] + seg["text"]
-        else:
-            buf.append(seg["text"])
+        buf.append(seg["text"])
 
         combined = " ".join(buf)
         is_last = (i == len(segments) - 1)
